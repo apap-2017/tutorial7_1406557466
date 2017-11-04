@@ -9,29 +9,27 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.model.CourseModel;
 
-
 @Service
 public class CourseDAOImpl implements CourseDAO{
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@Bean
-	public RestTemplate restTemplate() {
-	    return new RestTemplate();
+	public RestTemplate restTemplateA() {
+		return new RestTemplate();
 	}
-	
+
 	@Override
 	public CourseModel selectCourse(String id_course) {
 		CourseModel course = restTemplate.getForObject("http://localhost:8080/rest/course/view/" + id_course,
 				CourseModel.class);
 		return course;
 	}
-	
+
 	@Override
 	public List<CourseModel> selectAllCourses() {
-		List<CourseModel> courses = restTemplate.getForObject("http://localhost:8080/rest/course/viewall" ,
-				List.class);
+		List<CourseModel> courses = restTemplate.getForObject("http://localhost:8080/rest/course/viewall", List.class);
 		return courses;
 	}
-	
+
 }
