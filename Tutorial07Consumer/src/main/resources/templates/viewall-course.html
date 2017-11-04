@@ -1,19 +1,41 @@
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
 <div th:replace="fragments/header"></div>
 <div class="container">
-        <h1>All Course</h1>
-        
-    	<div th:each="course,iterationStatus: ${courses}">
-            <h3 th:text="'No. ' + ${iterationStatus.count}">No. 1</h3>
-	       	<h3 th:text="'idcourse = ' + ${course.idcourse}">ID</h3>
-	       	<h3 th:text="'Name = ' + ${course.name}">Nama</h3>
-	       	<h3 th:text="'SKS = ' + ${course.credits}">SKS</h3>
-	       	<h3>Mahasiswa yang mengambil</h3>
-			<ul th:each="student,iterationStatus: ${course.students}">
-				<li th:text="${student.npm} + '-' + ${student.name}" >
-				Nama MHS
-				</li>
-			</ul>
-	       	<hr/>
-       	</div>
-       	</div>
-   <div th:replace="fragments/footer"></div>
+	<br />
+	<h1>Daftar Seluruh Course</h1>
+
+	<table id="daftarSeluruhCourse"
+		class="table table-striped table-bordered dt-responsive nowrap">
+		<thead>
+			<tr>
+				<th class="text-center">No.</th>
+				<th class="text-center">ID Course</th>
+				<th class="text-center">Course Name</th>
+				<th class="text-center">SKS</th>
+				<th class="text-center">Mahasiswa Yang Mengambil</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="course,iterationStatus: ${courses}">
+
+				<td class="text-center" th:text="${iterationStatus.count}">No.</td>
+				<td class="text-center" th:text="${course.idcourse}">ID Course</td>
+				<td class="text-center" th:text="${course.name}">Course Name</td>
+				<td class="text-center" th:text="${course.credits}">SKS</td>
+				<td class="text-center">	
+					<ul th:each="student,iterationStatus: ${course.students}">
+						<li th:text="${student.npm} + '-' + ${student.name}"> Nama MHS
+					</li></ul></td>
+				
+			</tr>
+		</tbody>
+		</table>
+</div>
+<div th:replace="fragments/footer"></div>
+<script>
+		$(document).ready(function() {
+			$('#daftarSeluruhCourse').DataTable({
+				responsive : true
+			});
+		})
+	</script>
