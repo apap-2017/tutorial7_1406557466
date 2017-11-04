@@ -1,0 +1,34 @@
+<!DOCTYPE   html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Menambah Mahasiswa</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+<div th:replace="fragments/header"></div>
+<div class="container">
+<br />
+	<h2 class="page-header">Menambah Mahasiswa</h2>
+
+	<form action="/student/add/submit" method="get">
+		<div class="form-group">
+			<label for="npm">NPM</label> 
+			<input type="text" name="npm" />
+		</div>
+		<div class="form-group">
+			<label for="name">Name</label> 
+			<input type="text" name="name" />
+		</div>
+		<div class="form-group">
+			<label for="gpa">GPA</label> 
+			<input type="text" name="gpa" />
+		</div>
+
+		<div>
+			<button type="submit" name="action" value="save" class="btn btn-sm">Save</button>
+		</div>
+	</form>
+</div>
+<div th:replace="fragments/footer"></div>
+</body>
+</html>
